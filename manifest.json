@@ -1,0 +1,351 @@
+{
+	"manifest_version": 1,
+	"script": "DO-BOT.js",
+	"config": {
+		"groups": [
+			{
+				"name": "Auto Login",
+				"options": [
+					{
+						"id": "auto_login",
+						"type": "boolean",
+						"label": "Auto. login using the provided credentials",
+						"default": false
+					},
+					{
+						"id": "auto_login_username",
+						"type": "string",
+						"label": "DarkOrbit username for autologin"
+					},
+					{
+						"id": "auto_login_password",
+						"type": "password",
+						"label": "DarkOrbit password for autologin"
+					}
+				]
+			},
+			{
+				"name": "Ship",
+				"options": [
+					{
+						"id": "auto_reconnect",
+						"type": "boolean",
+						"label": "Auto. reconnect on connection loss",
+						"default": true
+					},
+					{
+						"id": "auto_ship_repair",
+						"type": "boolean",
+						"label": "Auto. repair the ship when destroyed",
+						"default": true
+					},
+					{
+						"id": "auto_ship_repair_location",
+						"type": "choice",
+						"label":  "Auth. ship repair location",
+						"default": "base",
+						"choices": {
+							"Company base": "base",
+							"Nearest gate": "gate",
+							"Last location ": "stage"
+						}
+					},
+					{
+						"id": "max_auto_ship_repairs",
+						"type": "integer",
+						"label": "Max. auto. ship repairs",
+						"min": 1,
+						"max": 100,
+						"default": 20
+					},
+                    {
+                        "id": "repair_on_low_hp",
+                        "type": "boolean",
+                        "label": "Auto repair on low HP",
+                        "default": false
+                    },
+                    {
+                        "id": "low_hp_threshold",
+                        "type": "choice",
+                        "label": "Low HP threshold",
+                        "choices": {
+                            "< 28%": "2",
+                            "< 42%": "3",
+                            "< 57%": "4",
+                            "< 71%": "5",
+                            "< 85%": "6"
+                        },
+                        "default": "3"
+                    },
+                    {
+                        "id": "flee_on_critical_hp",
+                        "type": "boolean",
+                        "label": "Auto. flee on critical low HP",
+                        "default": false
+                    },
+                    {
+                        "id": "critical_hp_threshold",
+                        "type": "choice",
+                        "label": "Critical HP threshold",
+                        "choices": {
+                            "< 14%": "1",
+                            "< 28%": "2",
+                            "< 42%": "3",
+                            "< 57%": "4",
+                            "< 71%": "5"
+                        },
+                        "default": "2"
+                    }
+				]
+			},
+			{
+				"name": "PET",
+				"options": [
+					{
+						"id": "manage_pet",
+						"type": "boolean",
+						"label": "Use the PET drone",
+						"default": false
+					},
+					{
+						"id": "auto_pet_revive",
+						"type": "boolean",
+						"label": "Auto. repair/revive the PET",
+						"default": false
+					},
+					{
+						"id": "max_pet_repairs",
+						"type": "integer",
+						"label": "Max. PET repairs",
+						"min": 0,
+						"max": 100,
+						"default": 20
+					},
+					{
+						"id": "pet_gear",
+						"type": "choice",
+						"label": "PET gear to use",
+						"default": "autolooter",
+						"choices": {
+							"Autolooter gear": "autolooter",
+							"Collector gear": "collector",
+							"Passivemode": "passivemode",
+							"Guardmode": "guardmode"
+						}
+					}
+
+				]
+			},
+			{
+				"name": "Navigation",
+				"options": [
+					{
+						"id": "do_global_nav",
+						"type": "boolean",
+						"label": "Always fly to the selected map",
+						"default": false
+					},
+					{
+						"id": "map",
+						"type": "choice",
+						"label": "Map",
+						"default": "4-1",
+						"choices": {
+							"1-1": "1-1",
+							"1-2": "1-2",
+							"1-3": "1-3",
+							"1-4": "1-4",
+							"1-5": "1-5",
+							"1-6": "1-6",
+							"1-7": "1-7",
+							"1-8": "1-8",
+							"2-1": "2-1",
+							"2-2": "2-2",
+							"2-3": "2-3",
+							"2-4": "2-4",
+							"2-5": "2-5",
+							"2-6": "2-6",
+							"2-7": "2-7",
+							"2-8": "2-8",
+							"3-1": "3-1",
+							"3-2": "3-2",
+							"3-3": "3-3",
+							"3-4": "3-4",
+							"3-5": "3-5",
+							"3-6": "3-6",
+							"3-7": "3-7",
+							"3-8": "3-8",
+							"4-1": "4-1",
+							"4-2": "4-2",
+							"4-3": "4-3",
+							"4-4": "4-4",
+							"4-5": "4-5"
+						}
+					}
+				]
+			},
+			{
+				"name": "Loot collector",
+				"options": [
+					{
+						"id": "collect_loot",
+						"type": "boolean",
+						"label": "Auto. collect bonus boxes (Requires 2D mode!)",
+						"default": true
+					}
+				]
+			},
+			{
+				"name": "NPC hunter (experimental)",
+				"options": [
+					{
+						"id": "hunt_npcs",
+						"type": "boolean",
+						"label": "Auto. hunt NPCs",
+						"default": false
+					},
+					{
+						"id": "hunter_targets",
+						"type": "choice",
+						"label": "What to hunt?",
+						"default": "x2.1",
+						"choices": {
+							"Recruit-/Aider-/Boss-/Streuner, Boss-/Lordakia": "x2.1",
+							"Lordakia, Saimon; Boss-/Mordon, Devolarium": "x3.1",
+							"Lordakia, Boss-/Saimon, Mordon": "x4.1",
+							"Lordakia, Boss-/Saimon, Mordon, Sibelon": "x4.2",
+							"Lordakia, Boss-/Sibelonit": "x5.1",
+							"Lordakia, Boss-/Sibelonit, Lordakium": "x5.2",
+							"Boss-/Kristallin": "x7.1",
+							"Boss-/Kristallin, Kristallon": "x7.2",
+							"Boss-/StreuneR": "x8.1"
+						}
+					},
+					{
+						"id": "hunter_ammo",
+						"type": "choice",
+						"label": "Laser ammunition",
+						"default": "x1",
+						"choices": {
+							"LCB-10 (x1)": "x1",
+							"MCB-25 (x2)": "x2",
+							"MCB-50 (x3)": "x3",
+							"UCB-100 (x4)": "x4"
+						}
+					},
+					{
+						"id": "hunter_timeout_in_ms",
+						"type": "integer",
+						"label": "Timeout between looking for NPCs in ms",
+						"default": 200,
+						"min": 25,
+						"max": 2000
+					}
+				]
+			},
+			{
+				"name": "Ingame windows managament",
+				"options": [
+					{
+						"id": "close_unnecessary_windows",
+						"type": "boolean",
+						"label": "Open required windows and close all the others",
+						"default": true
+					},
+					{
+						"id": "window_animation_in_ms",
+						"type": "integer",
+						"label": "Ingame window open/close animation time in ms",
+						"default": 1000,
+						"min": 1000,
+						"max": 3000
+					}
+				]
+			},
+			{
+				"name": "General",
+				"options": [
+                    {
+						"id": "main_browser_size",
+						"type": "choice",
+						"label": "Main browser size",
+						"default": "1440x789",
+						"choices": {
+                            "1366x768": "1366x657",
+                            "1440x900": "1440x789",
+                            "1680x1050": "1680x939",
+                            "1920x1080": "1920x969"
+						}
+                    },
+					{
+						"id": "main_browser_agent",
+						"type": "string",
+						"label": "Browser User Agent",
+						"default": "BigpointClient/1.0.11"
+					},
+					{
+						"id": "client_check_timeout_in_seconds",
+						"type": "integer",
+						"label": "Timeout in seconds after checking the ship is connected and alive",
+						"default": 90,
+						"min": 30,
+						"max": 300
+					}
+				]
+			},
+			{
+				"name": "Advanced (be carefull)",
+				"options": [
+					{
+						"id": "login_delay_in_secs",
+						"type": "integer",
+						"label": "How long to wait for the login page to load",
+						"default": 3,
+						"min": 1,
+						"max": 45
+					},
+					{
+						"id": "start_delay_in_secs",
+						"type": "integer",
+						"label": "Max. game load time in seconds",
+						"default": 5,
+						"min": 1,
+						"max": 45
+					},
+					{
+						"id": "pet_check_timeout_in_min",
+						"type": "integer",
+						"label": "Check the PET every X minutes",
+						"default": 5,
+						"min": 1,
+						"max": 30
+					},
+					{
+						"id": "collector_timeout_in_ms",
+						"type": "integer",
+						"label": "Timeout after looking for a bonusbox in ms",
+						"default": 200,
+						"min": 50,
+						"max": 2000
+					},
+					{
+						"id": "logout_halt_delay_in_ms",
+						"type": "integer",
+						"label": "The time in ms it takes the ship to stop on logout",
+						"default": 150,
+						"min": 50,
+						"max": 1000
+					},
+					{
+						"id": "marker_fade_in_delay_in_ms",
+						"type": "integer",
+						"label": "The time in ms it takes the target marker to fade in",
+						"default": 500,
+						"min": 450,
+						"max": 1200
+					}
+				]
+			}
+		]
+	}
+}
